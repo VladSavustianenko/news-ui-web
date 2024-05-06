@@ -1,0 +1,104 @@
+.header {
+    width: 100%;
+    background-color: var(--white-50);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        border-bottom: 1px solid var(--blue-100);
+        padding: 20px;
+
+        @media (max-width: 640px) {
+            align-items: start;
+        }
+
+        &__left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+
+            @media (max-width: 640px) {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .search {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 16px;
+    
+                input {
+                    width: 200px;
+                    background-color: var(--blue-10);
+                    border-radius: 10px;
+                    padding: 3px 10px;
+
+                    @media (max-width: 640px) {
+                        width: 150px;
+                    }
+                }
+            }
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+    }
+
+    &__categories {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        box-shadow: 10px 5px 5px var(--blue-20);
+
+        .topics {
+            display: flex;
+            gap: 20px;
+            overflow-x: scroll;
+            padding-bottom: 8px;
+
+            &__item {
+                text-wrap: nowrap;
+            }
+
+            &__link {
+                color: var(--grey-50);
+                text-decoration: none;
+
+                &:hover {
+                    color: var(--blue-20);
+                }
+                
+                &.active {
+                    border-bottom: 2px solid var(--pink-50);
+                }
+            }
+        }
+
+        ::-webkit-scrollbar:horizontal {
+            height: 4px;
+        }
+
+        ::-webkit-scrollbar-track:horizontal {
+            background: transparent;
+        }
+    }
+
+}

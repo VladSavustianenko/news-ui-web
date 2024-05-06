@@ -1,0 +1,53 @@
+<div class="container">
+    <div *ngIf="currentState == FORM_TYPE.login" class="form">
+        <div class="form__header">
+            Login
+        </div>
+        <div class="form__body" [formGroup]="loginForm">
+            <div class="form__body__field">
+                <label>Username</label>
+                <input type="text" formControlName="name" />
+            </div>
+            <div class="form__body__field">
+                <label>Password</label>
+                <input type="password" formControlName="password" />
+            </div>
+            <div *ngIf="errorMessage()" class="form__body__error">{{ errorMessage() }}</div>
+        </div>
+        <div class="form__footer">
+            <button [disabled]="loginForm.invalid" (click)="login()">Sign In</button>
+            <div class="switch-form">
+                <span>Don't have an account?</span>
+                <span class="link" (click)="toCreateForm()">Sign up</span>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="currentState == FORM_TYPE.newAccount" class="form">
+        <div class="form__header">
+            New Account
+        </div>
+        <div class="form__body" [formGroup]="createForm">
+            <div class="form__body__field">
+                <label>Username</label>
+                <input type="text" formControlName="name" />
+            </div>
+            <div class="form__body__field">
+                <label>Password</label>
+                <input type="password" formControlName="password" />
+            </div>
+            <div class="form__body__field">
+                <label>Confirm password</label>
+                <input type="password" formControlName="passwordConfirm" />
+            </div>
+            <div *ngIf="errorMessage()" class="form__body__error">{{ errorMessage() }}</div>
+        </div>
+        <div class="form__footer">
+            <button [disabled]="createForm.invalid" (click)="createUser()">Sign Up</button>
+            <div class="switch-form">
+                <span>Already have an account?</span>
+                <span class="link" (click)="toLoginForm()">Sign in</span>
+            </div>
+        </div>
+    </div>
+</div>

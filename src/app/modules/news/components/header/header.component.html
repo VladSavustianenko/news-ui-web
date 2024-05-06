@@ -1,0 +1,27 @@
+<div class="header">
+    <div class="header__top">
+        <div class="header__top__left">
+            <div [routerLink]="'/news'" class="logo">NEWS.COM</div>
+            <div class="search">
+                <input [(ngModel)]="searchInput" placeholder="Search" />
+                <button (click)="search()">Search</button>
+            </div>
+        </div>
+        <div class="actions">
+            <div *ngIf="userName">{{ userName }}</div>
+            <button (click)="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="header__categories">
+        <div class="topics">
+            <div *ngFor="let category of (categories$ | async)" class="topics__item">
+                <a
+                    class="topics__link"
+                    [ngClass]="{'active' : (activeCategory$ | async) === category.topic}"
+                    [routerLink]="'/category/' + category.topic"
+                >{{ category.topic }}</a>
+            </div>
+        </div>
+    </div>
+</div>

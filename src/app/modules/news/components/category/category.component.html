@@ -1,0 +1,38 @@
+<div *ngIf="news.length" class="container">
+    <div *ngIf="(activeCategory$ | async) as category" class="navigation">
+        <h1
+            class="navigation__category"
+            (click)="navigateToCategory(category)"
+        >{{ category }}</h1>
+        <div
+            *ngIf="(selectSubcategoriesByCategory$(category) | async) as subcategories"
+            class="navigation__subcategory__list"
+        >
+            <span
+                *ngFor="let subcategory of subcategories"
+                (click)="navigateToSubcategory(category, subcategory)"
+                class="navigation__subcategory__list__item"
+                [ngClass]="{'active' : (activeSubcategory$ | async) === subcategory}"
+            >{{ subcategory }}</span>
+        </div>
+    </div>
+
+    <div *ngFor="let topic of news" class="topic">
+        <div class="topic__main">
+            <span
+                *ngIf="topic.subsection"
+                (click)="navigateToSubcategory(topic.section, topic.subsection)"
+                class="topic__main__header"
+            >{{ topic.subsection }}</span>
+            <span (click)="navigateToTopic(topic.id)" class="topic__main__title">{{ topic.headline }}</span>
+            <div class="topic__main__description">{{ topic.description }}</div>
+            <div class="topic__main__footer">
+                <span>{{ topic.author }}</span>
+                <span>{{ topic.date | date:'dd:MM:yyyy' }}</span>
+            </div>
+        </div>
+        <div *ngIf="topic.image" class="topic__img">
+            <img (click)="navigateToTopic(topic.id)" [src]="topic.image" />
+        </div>
+    </div>
+</div>

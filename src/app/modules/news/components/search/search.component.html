@@ -1,0 +1,21 @@
+<div *ngIf="topics.length" class="container">
+    <h2 *ngIf="currentSearch$ | async as text">Search: {{ text }}</h2>
+    <div *ngFor="let topic of topics" class="topic">
+        <div class="topic__main">
+            <span
+                *ngIf="topic.subsection"
+                (click)="navigateToSubcategory(topic.section, topic.subsection)"
+                class="topic__main__header"
+            >{{ topic.subsection }}</span>
+            <span (click)="navigateToTopic(topic.id)" class="topic__main__title">{{ topic.headline }}</span>
+            <div class="topic__main__description">{{ topic.description }}</div>
+            <div class="topic__main__footer">
+                <span>{{ topic.author }}</span>
+                <span>{{ topic.date | date:'dd:MM:yyyy' }}</span>
+            </div>
+        </div>
+        <div *ngIf="topic.image" class="topic__img">
+            <img (click)="navigateToTopic(topic.id)" [src]="topic.image" />
+        </div>
+    </div>
+</div>

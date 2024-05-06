@@ -1,0 +1,75 @@
+<div class="container">
+    <!-- <div *ngFor="let topic of news" class="card">
+        <div class="card__header">
+            <span (click)="navigateToCategoryList(topic.section)">{{ topic.section }}</span>
+        </div>
+        <div class="card__author">
+            <img src="assets/icons/author.svg" />
+            <div class="card__author__text">{{ topic.author }}</div>
+            <img src="assets/icons/author.svg" />
+        </div>
+        <ng-container *ngIf="topic.image else noImg">
+            <div class="card__image">
+                <img [routerLink]="topic.id.toString()" src="{{ topic.image }}" />
+            </div>
+            <div class="card__body">
+                <div [routerLink]="topic.id.toString()" class="card__body__headline">{{ topic.headline }}</div>
+                <div class="card__body__teaser">{{ topic.teaser }}</div>
+            </div>
+        </ng-container>
+        <ng-template #noImg>
+            <div class="card__body_no_img">
+                <div class="card__body_no_img__headline">{{ topic.headline }}</div>
+                <div class="card__body_no_img__teaser"> {{ topic.teaser }} {{ topic.teaser }} {{ topic.teaser }}</div>
+            </div>
+        </ng-template>
+        <div class="card__footer">{{ topic.date }}</div>
+    </div> -->
+
+    <div>
+        <h2>Latest news</h2>
+        <div class="topic-container">
+            <div *ngFor="let topic of news" class="topic">
+                <div class="topic__main">
+                    <span
+                        *ngIf="topic.subsection"
+                        (click)="navigateToCategoryList(topic.section)"
+                        class="topic__main__header"
+                    >{{ topic.section }}</span>
+                    <span (click)="selectTopicFromMainList(topic.id)" class="topic__main__title">{{ topic.headline }}</span>
+                    <div class="topic__main__description">{{ topic.description }}</div>
+                    <div class="topic__main__footer">
+                        <span>{{ topic.author }}</span>
+                        <span>{{ topic.date | date:'dd:MM:yyyy' }}</span>
+                    </div>
+                </div>
+                <div *ngIf="topic.image" class="topic__img">
+                    <img (click)="selectTopicFromMainList(topic.id)" [src]="topic.image" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div *ngIf="recommendations.length" class="recommendations">
+        <h2>Special for you:</h2>
+
+        <div *ngFor="let topic of recommendations" class="topic">
+            <div class="topic__main">
+                <span
+                    (click)="navigateToCategoryList(topic.section)"
+                    class="topic__main__header"
+                >{{ topic.section }}</span>
+                <span (click)="selectRecommendedTopic(topic.id)" class="topic__main__title">{{ topic.headline }}</span>
+                <!-- <div class="topic__main__description">{{ topic.description }}</div> -->
+                <div class="topic__main__footer">
+                    <span>{{ topic.author }}</span>
+                    <span>{{ topic.date | date:'dd:MM:yyyy' }}</span>
+                </div>
+            </div>
+            <div *ngIf="topic.image" class="topic__img">
+                <img (click)="selectRecommendedTopic(topic.id)" [src]="topic.image" />
+            </div>
+        </div>
+    </div>
+</div>
