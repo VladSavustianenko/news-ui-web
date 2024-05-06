@@ -121,12 +121,12 @@ const routes: Routes = [
         LoginService,
         WebSocketService,
         ModuleInitializationService,
-        {
-            provide: APP_INITIALIZER,
-            useFactory: initModule,
-            deps: [ModuleInitializationService],
-            multi: true
-        },
+        // {
+        //     provide: APP_INITIALIZER,
+        //     useFactory: initModule,
+        //     deps: [ModuleInitializationService],
+        //     multi: true
+        // },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: ErrorInterceptor,
@@ -140,5 +140,5 @@ const routes: Routes = [
     ]
 })
 export class NewsModule {
-    constructor(private initService: ModuleInitializationService) { }
+    // constructor(private initService: ModuleInitializationService) { }
 }
