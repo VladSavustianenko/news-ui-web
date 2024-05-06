@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, inject } from "@angular/core";
 
-export const BASE_URL = 'http://localhost:5000'
+export const BASE_URL = 'https://web-news-engine-46cef28b089e.herokuapp.com'
 
 @Injectable()
 export class ApiServise {
